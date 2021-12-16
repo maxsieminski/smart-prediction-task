@@ -1,0 +1,3 @@
+CATEGORY_RESOURCE = "resource"
+CATEGORY_LITERAL = "literal"
+CATEGORY_BOOLEAN = "boolean"
