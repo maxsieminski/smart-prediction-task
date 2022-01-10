@@ -9,7 +9,7 @@ All questions are in lemmatized form
 STRING_QUESTIONS = ["how", "why"]
 DATE_QUESTION = "when"
 RESOURCE_PERSON_QUESTIONS = ["who", "whose", "whom"]
-RESOURCE_PLACE_QUESTIONS = ["which", "what", "where"]
+RESOURCE_PLACE_QUESTIONS = ["which", "where"]
 BOOLEAN_QUESTION = "be"
 
 
@@ -50,6 +50,7 @@ class TypePrediction:
                                                                                               "place", "state",
                                                                                               "states"]):
             return "dbo:Place"
+
         resource_lookup_word = ""
 
         if self.question.lemmatized[0].lower() == "which" and not self.question.lemmatized[1].lower() == "be":
