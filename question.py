@@ -25,7 +25,7 @@ NUMERIC_QUESTIONS = ["many", "much", "short", "long", "old", "young", "big", "sm
 class Question:
     def __init__(self, question):
         self.question: str = question
-        self.tokens: list[str] = word_tokenize(question)
+        self.tokens: list[str] = [token.lower() for token in word_tokenize(question)]
         self.parts_of_speech: list[str] = pos_tag(self.tokens)
         self.lemmatized: list[str] = self.__lemmatize()
         self.named_entities: list[tuple] = self.__tag_entities()
@@ -128,7 +128,8 @@ class Question:
         for word, index in question_words.items():
             if word.lower() == "how" and self.lemmatized[index + 1] in NUMERIC_QUESTIONS:
                 temp_words[word+"num"] = word
-            if word.lower() == "which" or (word.lower() == "what" and self.lemmatized[index + 1] == "be"):
+            # if word.lower() == "which" or (word.lower() == "what" and self.lemmatized[index + 1] == "be"):
+            if word.lower() == "what" and self.lemmatized[index + 1] == "be":
                 temp_words[word+"be"] = word
 
         for word, old_word in temp_words.items():
